@@ -1,7 +1,17 @@
 .TictactoeBtn{
 -fx-min-height: 100px;
 -fx-min-width: 100px;
+-fx-alignment: center;
+}
+.Empty{
 -fx-background-color: white;
 -fx-text-fill: white;
--fx-alignment: center;
+}
+.X{
+-fx-background-color: white;
+-fx-text-fill: black;
+}
+.O{
+-fx-background-color: white;
+-fx-text-fill: black;
 }
