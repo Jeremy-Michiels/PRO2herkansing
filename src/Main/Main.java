@@ -37,7 +37,7 @@ public class Main extends Application {
     private final HBox rij3 = new HBox(10);
 
     private final VBox last = new VBox(10);
-    private final Label WinLose = new Label();
+    private final Label WinLose = new Label("");
 
     private static Stage window;
 
@@ -46,6 +46,7 @@ public class Main extends Application {
         }
 
     private void addXO(Button button, String newStyle){
+        if(WinLose.getText() == "")
         if(button.getStyleClass().contains("Empty")) {
             button.getStyleClass().remove("Empty");
             button.getStyleClass().addAll(newStyle);
