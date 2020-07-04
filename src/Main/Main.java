@@ -1,5 +1,6 @@
 package Main;
 
+import Optionchecker.checkOpt;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -36,6 +37,7 @@ public class Main extends Application {
     private final HBox rij3 = new HBox(10);
 
     private final VBox last = new VBox(10);
+    private final Label WinLose = new Label();
 
     private static Stage window;
 
@@ -52,6 +54,9 @@ public class Main extends Application {
             APIV.setFitWidth(100);
             APIV.setFitHeight(100);
             button.setGraphic(APIV);
+        }
+        if(checkWin() != ""){
+            WinLose.setText(checkWin());
         }
         }
 
@@ -119,7 +124,19 @@ public class Main extends Application {
                         }
                     });
             }
-    private void checkWin(){}
+    private String checkWin(){
+        String opt1 = checkOpt.opt(een, twee, drie);
+        String opt2 = checkOpt.opt(vier, vijf, zes);
+        String opt3 = checkOpt.opt(zeven, acht, negen);
+
+        String opt4 = checkOpt.opt(een, vier, zeven);
+        String opt5 = checkOpt.opt(twee, vijf, acht);
+        String opt6 = checkOpt.opt(drie, zes, negen);
+
+        String opt7 = checkOpt.opt(een, vijf, negen);
+        String opt8 = checkOpt.opt(drie, vijf, zeven);
+        return opt1 + opt2 + opt3 + opt4 + opt5 + opt6 + opt7 + opt8;
+    }
     private void setButtons(){
         setBtn(een);
         setBtn(twee);
@@ -146,7 +163,7 @@ public class Main extends Application {
         rij1.setAlignment(Pos.CENTER);
         rij2.setAlignment(Pos.CENTER);
         rij3.setAlignment(Pos.CENTER);
-        last.getChildren().addAll(rij1, rij2, rij3);
+        last.getChildren().addAll(WinLose, rij1, rij2, rij3);
 
         last.getStyleClass().addAll("home");
         last.setMaxWidth(screen.getWidth());

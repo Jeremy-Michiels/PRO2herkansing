@@ -19,6 +19,6 @@ public class checkOpt {
             }
         }
 
-        return null;
+        return "";
     }
 }
