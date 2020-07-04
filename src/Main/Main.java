@@ -18,18 +18,18 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
     private final Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+
     private static BorderPane Layout = new BorderPane();
-    private final Button een = new Button("Knop 1");
-    private final Button twee = new Button("Knop 2");
-    private final Button drie = new Button("Knop 3");
 
-    private final Button vier = new Button("Knop 4");
-    private final Button vijf = new Button("Knop 5");
-    private final Button zes = new Button("Knop 6");
-
-    private final Button zeven = new Button("Knop 7");
-    private final Button acht = new Button("Knop 8");
-    private final Button negen = new Button("Knop 9");
+    private final Button een = new Button("1");
+    private final Button twee = new Button("2");
+    private final Button drie = new Button("3");
+    private final Button vier = new Button("4");
+    private final Button vijf = new Button("5");
+    private final Button zes = new Button("6");
+    private final Button zeven = new Button("7");
+    private final Button acht = new Button("8");
+    private final Button negen = new Button("9");
 
     private final HBox rij1 = new HBox(10);
     private final HBox rij2 = new HBox(10);
@@ -37,142 +37,99 @@ public class Main extends Application {
 
     private final VBox last = new VBox(10);
 
-    Label x = new Label("X");
-    Label o = new Label("O");
     private static Stage window;
+
     private static void btnStyle(Button button) {
         button.getStyleClass().addAll("TictactoeBtn", "Empty");
         }
-    private void addX(Button button){
-        button.getStyleClass().remove("Empty");
-        button.getStyleClass().addAll("X");
-            Image APImg = new Image(getClass().getResourceAsStream("../Pictures/X...jpg"));
+
+    private void addXO(Button button, String newStyle){
+        if(button.getStyleClass().contains("Empty")) {
+            button.getStyleClass().remove("Empty");
+            button.getStyleClass().addAll(newStyle);
+            Image APImg = new Image(getClass().getResourceAsStream("../Pictures/"+ newStyle +".jpg"));
             ImageView APIV = new ImageView(APImg);
             APIV.setFitWidth(100);
             APIV.setFitHeight(100);
             button.setGraphic(APIV);
         }
+        }
 
-
-    private void setBtnEen() {
-        btnStyle(een);
-        een.setOnAction(event -> {
-            try {
-                addX(een);
-                een.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        private void addO(){
+        int Random = RNG.generateRandomButton();
+        if(Random == 1) {
+            if(een.getStyleClass().contains("Empty")) {
+                addXO(een, "O");
             }
-        });
-    }
-    private void setBtnTwee() {
-        btnStyle(twee);
-        twee.setOnAction(event -> {
-            try {
-                addX(twee);
-                twee.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 2) {
+            if(twee.getStyleClass().contains("Empty")) {
+                addXO(twee, "O");
             }
-        });
-    }
-    private void setBtnDrie() {
-        btnStyle(drie);
-        drie.setOnAction(event -> {
-            try {
-                addX(drie);
-                drie.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 3) {
+            if(drie.getStyleClass().contains("Empty")) {
+                addXO(drie, "O");
             }
-        });
-    }
-    private void setBtnVier() {
-        btnStyle(vier);
-        vier.setOnAction(event -> {
-            try {
-                addX(vier);
-                vier.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 4) {
+            if(vier.getStyleClass().contains("Empty")) {
+                addXO(vier, "O");
             }
-        });
-    }
-    private void setBtnVijf() {
-        btnStyle(vijf);
-        vijf.setOnAction(event -> {
-            try {
-                addX(vijf);
-                vijf.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 5) {
+            if(vijf.getStyleClass().contains("Empty")) {
+                addXO(vijf, "O");
             }
-        });
-    }
-    private void setBtnZes() {
-        btnStyle(zes);
-        zes.setOnAction(event -> {
-            try {
-                addX(zes);
-                zes.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 6) {
+            if(zes.getStyleClass().contains("Empty")) {
+                addXO(zes, "O");
             }
-        });
-    }
-    private void setBtnZeven() {
-        btnStyle(zeven);
-        zeven.setOnAction(event -> {
-            try {
-                addX(zeven);
-                zeven.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 7) {
+            if(zeven.getStyleClass().contains("Empty")) {
+                addXO(zeven, "O");
             }
-        });
-    }
-    private void setBtnAcht() {
-        btnStyle(acht);
-        acht.setOnAction(event -> {
-            try {
-                addX(acht);
-                acht.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 8) {
+            if(acht.getStyleClass().contains("Empty")) {
+                addXO(acht, "O");
             }
-        });
-    }
-    private void setBtnNegen() {
-        btnStyle(negen);
-        negen.setOnAction(event -> {
-            try {
-                addX(negen);
-                negen.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+        else if(Random == 9) {
+            if(negen.getStyleClass().contains("Empty")) {
+                addXO(negen, "O");
             }
-        });
-    }
+        }
+
+
+
+            }
+            private void setBtn(Button button){
+                    btnStyle(button);
+                    button.setOnAction(event -> {
+                        try {
+                            addXO(button, "X");
+                            button.setText("");
+                            addO();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+            }
     private void checkWin(){}
     private void setButtons(){
-        setBtnEen();
-        setBtnTwee();
-        setBtnDrie();
-        setBtnVier();
-        setBtnVijf();
-        setBtnZes();
-        setBtnZeven();
-        setBtnAcht();
-        setBtnNegen();
+        setBtn(een);
+        setBtn(twee);
+        setBtn(drie);
+        setBtn(vier);
+        setBtn(vijf);
+        setBtn(zes);
+        setBtn(zeven);
+        setBtn(acht);
+        setBtn(negen);
     }
 
     private static void initiate() {
