@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,13 +32,13 @@ public class Main extends Application {
     private final Button zeven = new Button("7");
     private final Button acht = new Button("8");
     private final Button negen = new Button("9");
-
     private final HBox rij1 = new HBox(10);
     private final HBox rij2 = new HBox(10);
     private final HBox rij3 = new HBox(10);
 
     private final VBox last = new VBox(10);
     private final Label WinLose = new Label("");
+
 
     private static Stage window;
 
@@ -60,58 +61,37 @@ public class Main extends Application {
             WinLose.setText(checkWin());
         }
         }
+        private void addORef(Button button){
+                if(button.getStyleClass().contains("Empty")) {
+                    addXO(button, "O");
+                }
+                else{
+                    addO();
+                }
+            }
 
         private void addO(){
-        int Random = RNG.generateRandomButton();
-        if(Random == 1) {
-            if(een.getStyleClass().contains("Empty")) {
-                addXO(een, "O");
+            int Random = RNG.generateRandomButton();
+            if (Random == 1) {
+                addORef(een);
+            } else if (Random == 2) {
+                addORef(twee);
+            } else if (Random == 3) {
+                addORef(drie);
+            } else if (Random == 4) {
+                addORef(vier);
+            } else if (Random == 5) {
+                addORef(vijf);
+            } else if (Random == 6) {
+                addORef(zes);
+            } else if (Random == 7) {
+                addORef(zeven);
+            } else if (Random == 8) {
+                addORef(acht);
+            } else if (Random == 9) {
+                addORef(negen);
             }
         }
-        else if(Random == 2) {
-            if(twee.getStyleClass().contains("Empty")) {
-                addXO(twee, "O");
-            }
-        }
-        else if(Random == 3) {
-            if(drie.getStyleClass().contains("Empty")) {
-                addXO(drie, "O");
-            }
-        }
-        else if(Random == 4) {
-            if(vier.getStyleClass().contains("Empty")) {
-                addXO(vier, "O");
-            }
-        }
-        else if(Random == 5) {
-            if(vijf.getStyleClass().contains("Empty")) {
-                addXO(vijf, "O");
-            }
-        }
-        else if(Random == 6) {
-            if(zes.getStyleClass().contains("Empty")) {
-                addXO(zes, "O");
-            }
-        }
-        else if(Random == 7) {
-            if(zeven.getStyleClass().contains("Empty")) {
-                addXO(zeven, "O");
-            }
-        }
-        else if(Random == 8) {
-            if(acht.getStyleClass().contains("Empty")) {
-                addXO(acht, "O");
-            }
-        }
-        else if(Random == 9) {
-            if(negen.getStyleClass().contains("Empty")) {
-                addXO(negen, "O");
-            }
-        }
-
-
-
-            }
             private void setBtn(Button button){
                     btnStyle(button);
                     button.setOnAction(event -> {
@@ -125,7 +105,7 @@ public class Main extends Application {
                         }
                     });
             }
-    private String checkWin(){
+    private String checkWin() {
         String opt1 = checkOpt.opt(een, twee, drie);
         String opt2 = checkOpt.opt(vier, vijf, zes);
         String opt3 = checkOpt.opt(zeven, acht, negen);
@@ -136,7 +116,9 @@ public class Main extends Application {
 
         String opt7 = checkOpt.opt(een, vijf, negen);
         String opt8 = checkOpt.opt(drie, vijf, zeven);
-        return opt1 + opt2 + opt3 + opt4 + opt5 + opt6 + opt7 + opt8;
+
+        String allOpt = opt1 + opt2 + opt3 + opt4 + opt5 + opt6 + opt7 + opt8;
+        return allOpt;
     }
     private void setButtons(){
         setBtn(een);
