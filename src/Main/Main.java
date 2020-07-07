@@ -32,41 +32,69 @@ public class Main extends Application {
     private final Button zeven = new Button("7");
     private final Button acht = new Button("8");
     private final Button negen = new Button("9");
+    private final Button restart = new Button("Restart");
+    private final Button close = new Button("Shut off");
     private final HBox rij1 = new HBox(10);
     private final HBox rij2 = new HBox(10);
     private final HBox rij3 = new HBox(10);
+    private final HBox rij4 = new HBox(5);
+
 
     private final VBox last = new VBox(10);
     private final Label WinLose = new Label("");
+    private final Label checkPos = new Label("");
 
 
     private static Stage window;
 
     private static void btnStyle(Button button) {
+        button.getStyleClass().removeAll("X", "O");
         button.getStyleClass().addAll("TictactoeBtn", "Empty");
         }
 
     private void addXO(Button button, String newStyle){
-        if(WinLose.getText() == "")
-        if(button.getStyleClass().contains("Empty")) {
-            button.getStyleClass().remove("Empty");
-            button.getStyleClass().addAll(newStyle);
-            Image APImg = new Image(getClass().getResourceAsStream("../Pictures/"+ newStyle +".jpg"));
-            ImageView APIV = new ImageView(APImg);
-            APIV.setFitWidth(100);
-            APIV.setFitHeight(100);
-            button.setGraphic(APIV);
+        if(WinLose.getText() == "") {
+            if (button.getStyleClass().contains("Empty")) {
+                button.getStyleClass().removeAll("Empty");
+                button.getStyleClass().addAll(newStyle);
+                Image APImg = new Image(getClass().getResourceAsStream("../Pictures/" + newStyle + ".jpg"));
+                ImageView APIV = new ImageView(APImg);
+                APIV.setFitWidth(100);
+                APIV.setFitHeight(100);
+                button.setGraphic(APIV);
+            }
         }
+        else{}
         if(checkWin() != ""){
             WinLose.setText(checkWin());
         }
         }
+        private String checkEmpty(Button button){
+        if(button.getStyleClass().contains("Empty")){
+            return "x";
+        }
+        return "";
+        }
+
+
+
         private void addORef(Button button){
                 if(button.getStyleClass().contains("Empty")) {
                     addXO(button, "O");
                 }
                 else{
-                    addO();
+                    String a = checkEmpty(een);
+                    String b = checkEmpty(twee);
+                    String c = checkEmpty(drie);
+                    String d = checkEmpty(vier);
+                    String e = checkEmpty(vijf);
+                    String f = checkEmpty(zes);
+                    String g = checkEmpty(zeven);
+                    String h = checkEmpty(acht);
+                    String i = checkEmpty(negen);
+                    if(a+b+c+d+e+f+g+h+i != "") {
+                        addO();
+                    }
                 }
             }
 
@@ -94,11 +122,21 @@ public class Main extends Application {
         }
             private void setBtn(Button button){
                     btnStyle(button);
+                    button.setGraphic(null);
+
                     button.setOnAction(event -> {
                         try {
-                            addXO(button, "X");
-                            button.setText("");
-                            addO();
+                            if(checkEmpty(button) == "x") {
+                                addXO(button, "X");
+                                button.setText("");
+                                addO();
+                                checkPos.setText("");
+                            }
+                            else {
+                                if (WinLose.getText() == "") {
+                                    checkPos.setText("Choose another button");
+                                }
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -120,6 +158,32 @@ public class Main extends Application {
         String allOpt = opt1 + opt2 + opt3 + opt4 + opt5 + opt6 + opt7 + opt8;
         return allOpt;
     }
+    private void resetBtn(Button button){
+        button.getStyleClass().removeAll("X", "O");
+        button.getStyleClass().addAll("Empty");
+    }
+    private void setExit(){
+        close.setOnAction(e -> System.exit(0));
+    }
+    private void setRestart(){
+            restart.setOnAction(event -> {
+                try {
+                    WinLose.setText("");
+                    resetBtn(een);
+                    resetBtn(twee);
+                    resetBtn(drie);
+                    resetBtn(vier);
+                    resetBtn(vijf);
+                    resetBtn(zes);
+                    resetBtn(zeven);
+                    resetBtn(acht);
+                    resetBtn(negen);
+                    Mains();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     private void setButtons(){
         setBtn(een);
         setBtn(twee);
@@ -130,6 +194,8 @@ public class Main extends Application {
         setBtn(zeven);
         setBtn(acht);
         setBtn(negen);
+        setRestart();
+        setExit();
     }
 
     private static void initiate() {
@@ -142,12 +208,15 @@ public class Main extends Application {
         rij1.getChildren().addAll(een, twee, drie);
         rij2.getChildren().addAll(vier, vijf, zes);
         rij3.getChildren().addAll(zeven, acht, negen);
+        rij4.getChildren().addAll(close, WinLose,checkPos, restart);
 
         rij1.setAlignment(Pos.CENTER);
         rij2.setAlignment(Pos.CENTER);
         rij3.setAlignment(Pos.CENTER);
-        last.getChildren().addAll(WinLose, rij1, rij2, rij3);
-
+        rij4.setAlignment(Pos.CENTER);
+        if(WinLose.getText()==("")) {
+            last.getChildren().addAll(rij4, rij1, rij2, rij3);
+        }
         last.getStyleClass().addAll("home");
         last.setMaxWidth(screen.getWidth());
         last.setMaxHeight(screen.getHeight());
@@ -157,6 +226,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         initiate();
+        setLayout();
         Mains();
         window.setTitle("Tic Tac Toe");
         window.show();
@@ -168,7 +238,7 @@ public class Main extends Application {
 
 
     public void Mains(){
-        setLayout();
+
         setButtons();
         Layout.setCenter(last);
 

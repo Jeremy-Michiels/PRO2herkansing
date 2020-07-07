@@ -18,6 +18,6 @@
 .home{
 -fx-background-color: #999999;
 -fx-background-radius: 5px;
--fx-padding: 50px 50px;
+-fx-padding: 50px 50px; 
 }
 
