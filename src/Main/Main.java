@@ -43,6 +43,7 @@ public class Main extends Application {
     private final VBox last = new VBox(10);
     private final Label WinLose = new Label("");
     private final Label checkPos = new Label("");
+    private final Button newScreen = new Button( "New Screen");
 
 
     private static Stage window;
@@ -184,7 +185,17 @@ public class Main extends Application {
                 }
             });
         }
-    private void setButtons(){
+        private void setNewScreen() {
+        Stage newWin = new Stage();
+        newScreen.setOnAction(event -> {
+            try{
+                start(newWin);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        }
+    private void setButtons() throws Exception {
         setBtn(een);
         setBtn(twee);
         setBtn(drie);
@@ -196,6 +207,7 @@ public class Main extends Application {
         setBtn(negen);
         setRestart();
         setExit();
+        setNewScreen();
     }
 
     private static void initiate() {
@@ -208,7 +220,7 @@ public class Main extends Application {
         rij1.getChildren().addAll(een, twee, drie);
         rij2.getChildren().addAll(vier, vijf, zes);
         rij3.getChildren().addAll(zeven, acht, negen);
-        rij4.getChildren().addAll(close, WinLose,checkPos, restart);
+        rij4.getChildren().addAll(close, WinLose,checkPos, restart, newScreen);
 
         rij1.setAlignment(Pos.CENTER);
         rij2.setAlignment(Pos.CENTER);
@@ -237,7 +249,7 @@ public class Main extends Application {
     }
 
 
-    public void Mains(){
+    public void Mains() throws Exception {
 
         setButtons();
         Layout.setCenter(last);
