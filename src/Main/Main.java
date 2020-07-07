@@ -186,7 +186,7 @@ public class Main extends Application {
             });
         }
         private void setNewScreen() {
-        Stage newWin = new Stage();
+            final Stage newWin = new Stage();
         newScreen.setOnAction(event -> {
             try{
                 start(newWin);
@@ -211,7 +211,7 @@ public class Main extends Application {
     }
 
     private static void initiate() {
-        Scene scn = new Scene(Layout, 400, 400);
+        Scene scn = new Scene(Layout, 400, 500);
         scn.getStylesheets().add(Main.class.getResource("../CSS/Style.css").toExternalForm());
         window.setScene(scn);
         window.setMaximized(false);
@@ -220,14 +220,15 @@ public class Main extends Application {
         rij1.getChildren().addAll(een, twee, drie);
         rij2.getChildren().addAll(vier, vijf, zes);
         rij3.getChildren().addAll(zeven, acht, negen);
-        rij4.getChildren().addAll(close, WinLose,checkPos, restart, newScreen);
+        rij4.getChildren().addAll(close, WinLose, restart, newScreen);
 
         rij1.setAlignment(Pos.CENTER);
         rij2.setAlignment(Pos.CENTER);
         rij3.setAlignment(Pos.CENTER);
         rij4.setAlignment(Pos.CENTER);
+        checkPos.setAlignment(Pos.CENTER);
         if(WinLose.getText()==("")) {
-            last.getChildren().addAll(rij4, rij1, rij2, rij3);
+            last.getChildren().addAll(checkPos, rij4, rij1, rij2, rij3);
         }
         last.getStyleClass().addAll("home");
         last.setMaxWidth(screen.getWidth());
@@ -250,6 +251,7 @@ public class Main extends Application {
 
 
     public void Mains() throws Exception {
+
 
         setButtons();
         Layout.setCenter(last);
