@@ -1,4 +1,4 @@
-import Optionchecker.checkOpt;
+import OldApplication.checkOpt;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Button;
 import org.junit.Test;

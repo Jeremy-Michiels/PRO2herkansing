@@ -1,15 +1,21 @@
 package Main;
 
+import Optionchecker.checkOptNew;
+import javafx.scene.Node;
+import setOnAction.EventHandlerAddX;
 import setOnAction.EventHandlerClose;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import setOnAction.EventHandlerNewPlayscreen;
 
 import java.awt.*;
 import java.beans.EventHandler;
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,22 +43,35 @@ public class PlayScreen extends Stage implements Observer {
         HBox r1 = new HBox();
         HBox r2 = new HBox();
         HBox r3 = new HBox();
+        HBox r4 = new HBox();
+
+        final Label een = new Label("");
+        if(checkOptNew.optX(field) == true){
+                een.setText("X has won");
+            }
+            if(checkOptNew.optO(field) == true){
+                een.setText("O has won");
+            }
+
+        r4.getChildren().addAll(een);
+        vBox.getChildren().addAll(r1, r2, r3, r4);
         int tel = 2;
-        vBox.getChildren().addAll(r1, r2, r3);
         for(Buttons buttons: field.buttons){
             tel++;
             Button button = new Button(buttons.getTaken());
+            button.setOnAction(new EventHandlerAddX(buttons, this));
             if(tel/3 == 1){
                 r1.getChildren().addAll(button);
             }
             if(tel/3 == 2){
                 r2.getChildren().addAll(button);
             }
-            else{
+            if(tel/3 == 3){
                 r3.getChildren().addAll(button);
             }
 
         }
+
     }
 
     @Override
