@@ -38,20 +38,23 @@ public class checkOptNew {
             }
             i++;
         }
-        boolean opt1 = check[0] == 1 && check[1] == 1 && check[2] == 1;
-        boolean opt2 = check[3] == 1 && check[4] == 1 && check[5] == 1;
-        boolean opt3 = check[6] == 1 && check[7] == 1 && check[8] == 1;
+        boolean opt1 = checkOpt(check,0, 1, 2);
+        boolean opt2 = checkOpt(check,3, 4, 5);
+        boolean opt3 = checkOpt(check,6, 7, 8);
 
-        boolean opt4 = check[0] == 1 && check[3] == 1 && check[6] == 1;
-        boolean opt5 = check[1] == 1 && check[4] == 1 && check[7] == 1;
-        boolean opt6 = check[2] == 1 && check[5] == 1 && check[8] == 1;
+        boolean opt4 = checkOpt(check,0, 3, 6);
+        boolean opt5 = checkOpt(check,1, 4, 7);
+        boolean opt6 = checkOpt(check,2, 5, 8);
 
-        boolean opt7 = check[0] == 1 && check[4] == 1 && check[8] == 1;
-        boolean opt8 = check[2] == 1 && check[4] == 1 && check[6] == 1;
+        boolean opt7 = checkOpt(check,0, 4,8);
+        boolean opt8 = checkOpt(check,2, 4,6);
 
 
 
         return opt1 || opt2 || opt3 || opt4 || opt5 || opt6 || opt7 || opt8;
+    }
+    private static boolean checkOpt(int[] i, int j, int k, int l){
+        return i[j] == 1 && i[k] == 1 && i[l] == 1;
     }
     public static boolean optO(Field field) {
 
