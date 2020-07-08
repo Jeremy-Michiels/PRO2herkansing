@@ -1,16 +1,13 @@
-package Main;
+package OldApplication;
 
 import Optionchecker.checkOpt;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -179,7 +176,7 @@ public class Main extends Application {
                     resetBtn(zeven);
                     resetBtn(acht);
                     resetBtn(negen);
-                    Mains(Layout);
+                    Main(Layout);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -196,7 +193,7 @@ public class Main extends Application {
                 rij4.getChildren().clear();
                 last.getChildren().clear();
                 initiate(newWin, newBP);
-                Mains(newBP);
+                Main(newBP);
                 setLayout();
                 newWin.setTitle("Tic Tac Toe");
                 newWin.show();
@@ -246,27 +243,27 @@ public class Main extends Application {
         last.setMaxHeight(screen.getHeight());
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        initiate(window, Layout);
-        Mains(Layout);
-        setLayout();
-        window.setTitle("Tic Tac Toe");
-        window.show();
-
-    }
 
 
 
-    public void Mains(BorderPane bp) throws Exception {
+
+    public void Main(BorderPane bp) throws Exception {
         setButtons();
+        setLayout();
 
         bp.setCenter(last);
 
 
     }
-    public static void main(String[] args) {
-        launch(args);
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        window = primaryStage;
+        initiate(window, Layout);
+        setButtons();
+        setLayout();
+        Layout.setCenter(last);
+        window.setTitle("Tic Tac Toe");
+        window.show();
     }
 }
