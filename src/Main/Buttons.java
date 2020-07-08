@@ -8,7 +8,7 @@ public class Buttons extends Observable {
 
     public Buttons(int number){
         this.number = number;
-        this.taken = "Empty";
+        this.taken = "/";
     }
     public int getNumber(){
         return this.number;

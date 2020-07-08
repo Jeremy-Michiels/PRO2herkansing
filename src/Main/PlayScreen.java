@@ -1,8 +1,7 @@
 package Main;
 
 import Optionchecker.checkOptNew;
-import javafx.scene.Node;
-import setOnAction.EventHandlerAddX;
+import setOnAction.EventHandlerAddXO;
 import setOnAction.EventHandlerClose;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -11,11 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import setOnAction.EventHandlerNewPlayscreen;
 
-import java.awt.*;
-import java.beans.EventHandler;
-import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -59,7 +54,7 @@ public class PlayScreen extends Stage implements Observer {
         for(Buttons buttons: field.buttons){
             tel++;
             Button button = new Button(buttons.getTaken());
-            button.setOnAction(new EventHandlerAddX(buttons, this));
+            button.setOnAction(new EventHandlerAddXO(buttons, this, field));
             if(tel/3 == 1){
                 r1.getChildren().addAll(button);
             }
