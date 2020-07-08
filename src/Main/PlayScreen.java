@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import setOnAction.EventHandlerReset;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -33,12 +34,14 @@ public class PlayScreen extends Stage implements Observer {
     }
     public void draw(){
         this.rootPane.getChildren().clear();
-        VBox vBox = new VBox();
-        this.rootPane.getChildren().add(vBox);
+        VBox vBox = new VBox(20);
+        VBox vbox2 = new VBox();
+        HBox fin = new HBox(20);
+        this.rootPane.getChildren().add(fin);
         HBox r1 = new HBox();
         HBox r2 = new HBox();
         HBox r3 = new HBox();
-        HBox r4 = new HBox();
+        HBox r4 = new HBox(20);
 
         final Label een = new Label("");
         if(checkOptNew.optX(field) == true){
@@ -47,9 +50,13 @@ public class PlayScreen extends Stage implements Observer {
             if(checkOptNew.optO(field) == true){
                 een.setText("O has won");
             }
+            Button Reset = new Button("Reset");
+            Reset.setOnAction(new EventHandlerReset(field, this));
 
-        r4.getChildren().addAll(een);
-        vBox.getChildren().addAll(r1, r2, r3, r4);
+        r4.getChildren().addAll(een, Reset);
+        vBox.getChildren().addAll(r4);
+        vbox2.getChildren().addAll(r1, r2, r3);
+        fin.getChildren().addAll(vBox, vbox2);
         int tel = 2;
         for(Buttons buttons: field.buttons){
             tel++;
