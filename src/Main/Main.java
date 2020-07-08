@@ -179,7 +179,7 @@ public class Main extends Application {
                     resetBtn(zeven);
                     resetBtn(acht);
                     resetBtn(negen);
-                    Mains();
+                    Mains(Layout);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -187,9 +187,19 @@ public class Main extends Application {
         }
         private void setNewScreen() {
             final Stage newWin = new Stage();
+            final BorderPane newBP = new BorderPane();
         newScreen.setOnAction(event -> {
             try{
-                start(newWin);
+                rij1.getChildren().clear();
+                rij2.getChildren().clear();
+                rij3.getChildren().clear();
+                rij4.getChildren().clear();
+                last.getChildren().clear();
+                initiate(newWin, newBP);
+                Mains(newBP);
+                setLayout();
+                newWin.setTitle("Tic Tac Toe");
+                newWin.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -210,11 +220,12 @@ public class Main extends Application {
         setNewScreen();
     }
 
-    private static void initiate() {
-        Scene scn = new Scene(Layout, 400, 500);
+    private static void initiate(Stage stage, BorderPane bp) {
+        Scene scn = new Scene(bp, 400, 500);
         scn.getStylesheets().add(Main.class.getResource("../CSS/Style.css").toExternalForm());
-        window.setScene(scn);
-        window.setMaximized(false);
+        stage.setScene(scn);
+        stage.setMaximized(false);
+
     }
     private void setLayout() {
         rij1.getChildren().addAll(een, twee, drie);
@@ -238,23 +249,20 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        initiate();
+        initiate(window, Layout);
+        Mains(Layout);
         setLayout();
-        Mains();
         window.setTitle("Tic Tac Toe");
         window.show();
-    }
-    public static void setLineLayout(Line line){
-        line.setStrokeWidth(5);
-        line.setStroke(Color.WHITE);
+
     }
 
 
-    public void Mains() throws Exception {
 
-
+    public void Mains(BorderPane bp) throws Exception {
         setButtons();
-        Layout.setCenter(last);
+
+        bp.setCenter(last);
 
 
     }
