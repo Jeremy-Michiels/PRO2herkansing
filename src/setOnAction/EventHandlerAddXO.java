@@ -24,10 +24,18 @@ public class EventHandlerAddXO implements EventHandler<ActionEvent> {
         if (this.buttons.getTaken().equals("/")) {
             this.buttons.setTaken("X");
             this.playScreen.draw();
-            int R = RNG.generateRandomButton();
+            }
+        int R = RNG.generateRandomButton();
+        if(PlayScreen.getEenText().equals(""))
             if(field.buttons[R].getTaken().equals("/")){
                 field.buttons[R].setTaken("O");
-            }
         }
+        else{
+            int P = RNG.generateRandomButton();
+            if(field.buttons[P].getTaken().equals("/")){
+                field.buttons[P].setTaken("O");
+            }
+
+            }
     }
 }

@@ -19,6 +19,7 @@ public class EventHandlerReset implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent){
         for(Buttons buttons : field.buttons){
             buttons.setTaken("/");
+            PlayScreen.setEenText("");
         }
 
         }

@@ -16,6 +16,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class PlayScreen extends Stage implements Observer {
+    private static final Label een = new Label("");
     private Field field;
     private Pane rootPane;
     public PlayScreen(Field field){
@@ -43,7 +44,7 @@ public class PlayScreen extends Stage implements Observer {
         HBox r3 = new HBox();
         HBox r4 = new HBox(20);
 
-        final Label een = new Label("");
+
         if(checkOptNew.optX(field) == true){
                 een.setText("X has won");
             }
@@ -61,7 +62,16 @@ public class PlayScreen extends Stage implements Observer {
         for(Buttons buttons: field.buttons){
             tel++;
             Button button = new Button(buttons.getTaken());
-            button.setOnAction(new EventHandlerAddXO(buttons, this, field));
+            if(een.getText().equals("")) {
+                button.setOnAction(new EventHandlerAddXO(buttons, this, field));
+            }
+            else{
+                button.setOnAction(null);
+            }
+
+
+
+
             if(tel/3 == 1){
                 r1.getChildren().addAll(button);
             }
@@ -79,5 +89,11 @@ public class PlayScreen extends Stage implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         draw();
+    }
+    public static String getEenText(){
+        return een.getText();
+    }
+    public static void setEenText(String n){
+        een.setText(n);
     }
 }
