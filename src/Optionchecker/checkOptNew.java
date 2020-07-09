@@ -28,7 +28,7 @@ public class checkOptNew {
     }
 
     private static boolean optCheck(String k, Field field){
-        int[] check = new int[9];
+        int[] check = new int[8];
         int i = 0;
         for (Buttons buttons : field.buttons) {
             if (buttons.getTaken().equals(k)) {
@@ -53,7 +53,7 @@ public class checkOptNew {
 
         return opt1 || opt2 || opt3 || opt4 || opt5 || opt6 || opt7 || opt8;
     }
-    private static boolean checkOpt(int[] i, int j, int k, int l){
+    public static boolean checkOpt(int[] i, int j, int k, int l){
         return i[j] == 1 && i[k] == 1 && i[l] == 1;
     }
     public static boolean optO(Field field) {
